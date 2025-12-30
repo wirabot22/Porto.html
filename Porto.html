@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galaxy Portfolio - 4Keys Osaka</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #0a0a1a;
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+        }
+
+        /* Background galaksi */
+        #galaxy-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(ellipse at bottom, #0a0a1a 0%, #000000 100%);
+        }
+
+        .stars, .twinkling {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .stars {
+            background: #000 url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxIiBjeT0iMSIgcj0iMSIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==') repeat;
+            z-index: -1;
+        }
+
+        .twinkling {
+            background: transparent url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48Y2lyY2xlIGN4PSIxIiBjeT0iMSIgcj0iMSIgZmlsbD0iI2ZmZiIvPjwvc3ZnPg==') repeat;
+            z-index: -1;
+            animation: twinkling 200s linear infinite;
+        }
+
+        @keyframes twinkling {
+            from { background-position: 0 0; }
+            to { background-position: 10000px 5000px; }
+        }
+
+        /* Container utama */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header */
+        header {
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 2.8rem;
+            font-weight: 900;
+            background: linear-gradient(to right, #8a2be2, #00bfff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #a0a0ff;
+            margin-bottom: 30px;
+        }
+
+        /* Tombol utama */
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(106, 17, 203, 0.5);
+            margin-top: 20px;
+            border: 2px solid transparent;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(106, 17, 203, 0.7);
+            border-color: #fff;
+        }
+
+        .cta-button i {
+            margin-left: 10px;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-10px);}
+            60% {transform: translateY(-5px);}
+        }
+
+        /* Kontak */
+        .contact-section {
+            background: rgba(10, 10, 40, 0.7);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 40px 0;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .contact-section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            color: #00bfff;
+        }
+
+        .contact-icons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .contact-icon {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.3s ease;
+            width: 120px;
+        }
+
+        .contact-icon:hover {
+            transform: translateY(-10px);
+        }
+
+        .icon-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp { background: linear-gradient(45deg, #25D366, #128C7E); }
+        .discord { background: linear-gradient(45deg, #7289DA, #4a5fc1); }
+        .instagram { background: linear-gradient(45deg, #E4405F, #833AB4); }
+        .website { background: linear-gradient(45deg, #FF6B6B, #4ECDC4); }
+
+        .contact-icon:hover .whatsapp { box-shadow: 0 0 20px #25D366; }
+        .contact-icon:hover .discord { box-shadow: 0 0 20px #7289DA; }
+        .contact-icon:hover .instagram { box-shadow: 0 0 20px #E4405F; }
+        .contact-icon:hover .website { box-shadow: 0 0 20px #FF6B6B; }
+
+        .contact-icon span {
+            font-size: 0.9rem;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        /* Produk */
+        .products-section {
+            margin: 60px 0;
+        }
+
+        .products-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: #8a2be2;
+            position: relative;
+        }
+
+        .products-section h2:after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(to right, #8a2be2, #00bfff);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: rgba(20, 20, 50, 0.7);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #8a2be2, #00bfff);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(138, 43, 226, 0.3);
+        }
+
+        .product-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #00bfff;
+        }
+
+        .product-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #a0a0ff;
+        }
+
+        .product-card p {
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 25px;
+        }
+
+        .product-features li {
+            padding: 5px 0;
+            color: #ddd;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .product-features li:before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: #8a2be2;
+        }
+
+        .product-btn {
+            display: inline-block;
+            background: rgba(138, 43, 226, 0.2);
+            color: #a0a0ff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid #8a2be2;
+        }
+
+        .product-btn:hover {
+            background: rgba(138, 43, 226, 0.4);
+            color: #fff;
+        }
+
+        /* Slogan */
+        .slogan-section {
+            text-align: center;
+            padding: 80px 0;
+            margin-top: 40px;
+            position: relative;
+        }
+
+        .slogan-section:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at center, rgba(106, 17, 203, 0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .slogan {
+            font-size: 3rem;
+            font-weight: 900;
+            background: linear-gradient(to right, #8a2be2, #00bfff, #8a2be2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shine 3s linear infinite;
+            line-height: 1.2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        @keyframes shine {
+            to { background-position: 200% center; }
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        /* Responsif */
+        @media (max-width: 768px) {
+            .logo { font-size: 2rem; }
+            .slogan { font-size: 2rem; }
+            .contact-icons { gap: 15px; }
+            .contact-icon { width: 100px; }
+            .icon-circle { width: 60px; height: 60px; font-size: 1.5rem; }
+            .products-grid { grid-template-columns: 1fr; }
+            .cta-button { padding: 15px 30px; font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background galaksi -->
+    <div id="galaxy-bg">
+        <div class="stars"></div>
+        <div class="twinkling"></div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1 class="logo">Galaxy Portfolio</h1>
+            <p class="tagline">Solusi Digital untuk Kebutuhan Online Anda</p>
+            <a href="#products" class="cta-button">
+                Jelajahi Produk <i class="fas fa-arrow-down"></i>
+            </a>
+        </header>
+
+        <!-- Kontak -->
+        <section class="contact-section">
+            <h2>Hubungi Saya</h2>
+            <div class="contact-icons">
+                <a href="https://wa.me/6285713069318" target="_blank" class="contact-icon">
+                    <div class="icon-circle whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <span>WhatsApp</span>
+                    <small>+62 857-1306-9318</small>
+                </a>
+                
+                <a href="https://discord.gg/52HEKMJK" target="_blank" class="contact-icon">
+                    <div class="icon-circle discord">
+                        <i class="fab fa-discord"></i>
+                    </div>
+                    <span>Discord</span>
+                    <small>Join Server</small>
+                </a>
+                
+                <a href="https://whatsapp.com/channel/0029Vb794AdDp2Q15KEoL92r" target="_blank" class="contact-icon">
+                    <div class="icon-circle whatsapp">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <span>WhatsApp Channel</span>
+                    <small>Channel Updates</small>
+                </a>
+                
+                <a href="https://www.instagram.com/4keys_osaka?igsh=MWs4YXZwYzlvNmg0OA==" target="_blank" class="contact-icon">
+                    <div class="icon-circle instagram">
+                        <i class="fab fa-instagram"></i>
+                    </div>
+                    <span>Instagram</span>
+                    <small>@4keys_osaka</small>
+                </a>
+            </div>
+        </section>
+
+        <!-- Produk -->
+        <section id="products" class="products-section">
+            <h2>Produk & Layanan</h2>
+            <div class="products-grid">
+                <!-- Panel -->
+                <div class="product-card">
+                    <div class="product-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>Panel Premium</h3>
+                    <p>Panel dengan fitur lengkap untuk kebutuhan online Anda. Dukungan 24/7 dan server yang stabil.</p>
+                    <ul class="product-features">
+                        <li>Multiple Server Option</li>
+                        <li>High Speed Connection</li>
+                        <li>99.9% Uptime</li>
+                        <li>Real-time Monitoring</li>
+                    </ul>
+                    <a href="https://wa.me/6285713069318?text=Halo,%20saya%20tertarik%20dengan%20Panel%20Premium" target="_blank" class="product-btn">Pesan Sekarang</a>
+                </div>
+
+                <!-- Script -->
+                <div class="product-card">
+                    <div class="product-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Custom Script</h3>
+                    <p>Script kustom untuk otomatisasi dan kebutuhan spesifik. Dikembangkan sesuai permintaan.</p>
+                    <ul class="product-features">
+                        <li>Custom Development</li>
+                        <li>Automation Tools</li>
+                        <li>Bug Fixing</li>
+                        <li>Technical Support</li>
+                    </ul>
+                    <a href="https://wa.me/6285713069318?text=Halo,%20saya%20membutuhkan%20Custom%20Script" target="_blank" class="product-btn">Konsultasi Gratis</a>
+                </div>
+
+                <!-- Metode Banned -->
+                <div class="product-card">
+                    <div class="product-icon">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <h3>Metode Banned</h3>
+                    <p>Solusi untuk mengatasi masalah akun yang terkena banned dengan metode yang telah teruji.</p>
+                    <ul class="product-features">
+                        <li>Account Recovery</li>
+                        <li>Prevention Methods</li>
+                        <li>Step-by-Step Guide</li>
+                        <li>Latest Techniques</li>
+                    </ul>
+                    <a href="https://wa.me/6285713069318?text=Halo,%20saya%20perlu%20bantuan%20dengan%20akun%20terbanned" target="_blank" class="product-btn">Dapatkan Solusi</a>
+                </div>
+
+                <!-- Metode Unbanned -->
+                <div class="product-card">
+                    <div class="product-icon">
+                        <i class="fas fa-unlock"></i>
+                    </div>
+                    <h3>Metode Unbanned</h3>
+                    <p>Layanan untuk membuka akses akun yang terkena banned dengan tingkat keberhasilan tinggi.</p>
+                    <ul class="product-features">
+                        <li>High Success Rate</li>
+                        <li>Fast Processing</li>
+                        <li>Multiple Platform</li>
+                        <li>Guaranteed Service</li>
+                    </ul>
+                    <a href="https://wa.me/6285713069318?text=Halo,%20saya%20ingin%20menggunakan%20layanan%20Unbanned" target="_blank" class="product-btn">Pulihkan Akun</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slogan -->
+        <section class="slogan-section">
+            <h2 class="slogan">"You Never Know Until You Try"</h2>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>© 2023 Galaxy Portfolio - 4Keys Osaka. All rights reserved.</p>
+            <p>Contact: +62 857-1306-9318 | Email: info@4keys-osaka.com</p>
+        </footer>
+    </div>
+
+    <script>
+        // Animasi untuk smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Efek hover tambahan untuk kartu produk
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.background = 'rgba(30, 30, 70, 0.9)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.background = 'rgba(20, 20, 50, 0.7)';
+            });
+        });
+
+        // Animasi untuk ikon kontak
+        document.querySelectorAll('.contact-icon').forEach(icon => {
+            icon.addEventListener('mouseenter', function() {
+                const circle = this.querySelector('.icon-circle');
+                circle.style.transform = 'scale(1.1) rotate(5deg)';
+            });
+            
+            icon.addEventListener('mouseleave', function() {
+                const circle = this.querySelector('.icon-circle');
+                circle.style.transform = 'scale(1) rotate(0deg)';
+            });
+        });
+    </script>
+</body>
+</html>
